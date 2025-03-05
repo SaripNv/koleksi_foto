@@ -1,0 +1,916 @@
+ERROR - 2025-02-26 23:05:00 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'foto'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'foto', Object(SensitiveParameterValue), 'ci4', 3306, '', 0)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#4 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#10 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#3 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#7 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-02-26 23:05:00 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: galleries]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleries`.*, `categories`.`nama_kategori`
+FROM `galleries`
+JOIN `categories` ON `categories`.`id` = `galleries`.`kategori_id`
+ORDER BY `tanggal_diambil` DESC', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Koleksi_foto\\public\\index.php')
+ERROR - 2025-02-26 23:05:02 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'foto'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'foto', Object(SensitiveParameterValue), 'ci4', 3306, '', 0)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#4 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#10 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#3 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#7 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-02-26 23:05:02 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: galleries]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleries`.*, `categories`.`nama_kategori`
+FROM `galleries`
+JOIN `categories` ON `categories`.`id` = `galleries`.`kategori_id`
+ORDER BY `tanggal_diambil` DESC', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Koleksi_foto\\public\\index.php')
+ERROR - 2025-02-26 23:05:21 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'foto'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'foto', Object(SensitiveParameterValue), 'ci4', 3306, '', 0)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#4 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#10 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#3 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#7 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-02-26 23:05:21 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: galleries]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleries`.*, `categories`.`nama_kategori`
+FROM `galleries`
+JOIN `categories` ON `categories`.`id` = `galleries`.`kategori_id`
+ORDER BY `tanggal_diambil` DESC', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Koleksi_foto\\public\\index.php')
+ERROR - 2025-02-26 23:06:16 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'foto'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'foto', Object(SensitiveParameterValue), 'ci4', 3306, '', 0)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#4 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#10 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#3 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#7 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-02-26 23:06:16 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: galleries]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleries`.*, `categories`.`nama_kategori`
+FROM `galleries`
+JOIN `categories` ON `categories`.`id` = `galleries`.`kategori_id`
+ORDER BY `tanggal_diambil` DESC', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Koleksi_foto\\public\\index.php')
+ERROR - 2025-02-26 23:06:18 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'foto'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'foto', Object(SensitiveParameterValue), 'ci4', 3306, '', 0)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#4 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#10 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#3 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#7 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-02-26 23:06:18 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: galleries]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleries`.*, `categories`.`nama_kategori`
+FROM `galleries`
+JOIN `categories` ON `categories`.`id` = `galleries`.`kategori_id`
+ORDER BY `tanggal_diambil` DESC', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Koleksi_foto\\public\\index.php')
+ERROR - 2025-02-26 23:11:06 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'foto'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'foto', Object(SensitiveParameterValue), 'ci4', 3306, '', 0)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#4 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#10 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#3 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#7 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-02-26 23:11:06 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: galleries]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleries`.*, `categories`.`nama_kategori`
+FROM `galleries`
+JOIN `categories` ON `categories`.`id` = `galleries`.`kategori_id`
+ORDER BY `tanggal_diambil` DESC', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Koleksi_foto\\public\\index.php')
+ERROR - 2025-02-26 23:11:08 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'foto'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'foto', Object(SensitiveParameterValue), 'ci4', 3306, '', 0)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#4 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#10 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#3 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#7 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-02-26 23:11:08 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: galleries]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleries`.*, `categories`.`nama_kategori`
+FROM `galleries`
+JOIN `categories` ON `categories`.`id` = `galleries`.`kategori_id`
+ORDER BY `tanggal_diambil` DESC', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Koleksi_foto\\public\\index.php')
+ERROR - 2025-02-26 23:11:14 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'foto'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'foto', Object(SensitiveParameterValue), 'ci4', 3306, '', 0)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#4 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#10 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#3 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#7 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-02-26 23:11:14 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: galleries]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleries`.*, `categories`.`nama_kategori`
+FROM `galleries`
+JOIN `categories` ON `categories`.`id` = `galleries`.`kategori_id`
+ORDER BY `tanggal_diambil` DESC', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Koleksi_foto\\public\\index.php')
+ERROR - 2025-02-26 23:11:15 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'foto'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'foto', Object(SensitiveParameterValue), 'ci4', 3306, '', 0)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#4 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#10 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#3 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#7 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-02-26 23:11:15 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: galleries]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleries`.*, `categories`.`nama_kategori`
+FROM `galleries`
+JOIN `categories` ON `categories`.`id` = `galleries`.`kategori_id`
+ORDER BY `tanggal_diambil` DESC', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Koleksi_foto\\public\\index.php')
+ERROR - 2025-02-26 23:15:10 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'foto'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'foto', Object(SensitiveParameterValue), 'ci4', 3306, '', 0)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#4 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#10 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#3 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#7 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-02-26 23:15:10 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: galleries]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleries`.*, `categories`.`nama_kategori`
+FROM `galleries`
+JOIN `categories` ON `categories`.`id` = `galleries`.`kategori_id`
+ORDER BY `tanggal_diambil` DESC', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Koleksi_foto\\public\\index.php')
+ERROR - 2025-02-26 23:16:20 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'foto'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'foto', Object(SensitiveParameterValue), 'ci4', 3306, '', 0)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#4 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#10 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#3 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#7 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-02-26 23:16:20 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: galleries]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleries`.*, `categories`.`nama_kategori`
+FROM `galleries`
+JOIN `categories` ON `categories`.`id` = `galleries`.`kategori_id`
+ORDER BY `tanggal_diambil` DESC', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\GalleriesModel.php(19): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Koleksi_foto\\public\\index.php')
+ERROR - 2025-02-26 23:17:14 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'foto'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'foto', Object(SensitiveParameterValue), 'ci4', 3306, '', 0)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#4 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(17): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#10 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#3 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(17): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#7 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-02-26 23:17:14 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: galleries]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleries`.*, `categories`.`nama_kategori`
+FROM `galleries`
+LEFT JOIN `categories` ON `categories`.`id` = `galleries`.`kategori_id`', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\GalleriesModel.php(17): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Koleksi_foto\\public\\index.php')
+ERROR - 2025-02-26 23:18:04 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'foto'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'foto', Object(SensitiveParameterValue), 'koleksi_foto', 3306, '', 0)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#4 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(17): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#10 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#3 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(17): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#7 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-02-26 23:18:04 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: galleries]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleries`.*, `categories`.`nama_kategori`
+FROM `galleries`
+LEFT JOIN `categories` ON `categories`.`id` = `galleries`.`kategori_id`', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\GalleriesModel.php(17): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Koleksi_foto\\public\\index.php')
+ERROR - 2025-02-26 23:18:06 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'foto'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'foto', Object(SensitiveParameterValue), 'koleksi_foto', 3306, '', 0)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#4 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(17): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#10 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#3 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(17): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#7 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-02-26 23:18:06 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: galleries]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleries`.*, `categories`.`nama_kategori`
+FROM `galleries`
+LEFT JOIN `categories` ON `categories`.`id` = `galleries`.`kategori_id`', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\GalleriesModel.php(17): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Koleksi_foto\\public\\index.php')
+ERROR - 2025-02-26 23:18:07 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'foto'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'foto', Object(SensitiveParameterValue), 'koleksi_foto', 3306, '', 0)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#4 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(17): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#10 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#3 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(17): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#7 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-02-26 23:18:07 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: galleries]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleries`.*, `categories`.`nama_kategori`
+FROM `galleries`
+LEFT JOIN `categories` ON `categories`.`id` = `galleries`.`kategori_id`', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\GalleriesModel.php(17): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Koleksi_foto\\public\\index.php')
+ERROR - 2025-02-26 23:19:16 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'foto'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'foto', Object(SensitiveParameterValue), 'koleksi_foto', 3306, '', 0)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#4 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(17): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#10 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\laragon\www\Koleksi_foto\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Koleksi_foto\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Koleksi_foto\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleri...', Array, false)
+#3 C:\laragon\www\Koleksi_foto\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Koleksi_foto\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\Koleksi_foto\app\Models\GalleriesModel.php(17): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\Koleksi_foto\app\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+#7 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+#8 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+#9 C:\laragon\www\Koleksi_foto\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Koleksi_foto\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Koleksi_foto\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Koleksi_foto\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Koleksi_foto\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-02-26 23:19:16 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: galleries]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `galleries`.*, `categories`.`nama_kategori`
+FROM `galleries`
+LEFT JOIN `categories` ON `categories`.`id` = `galleries`.`kategori_id`', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\GalleriesModel.php(17): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\GalleriesController.php(23): App\Models\GalleriesModel->getAllGalleries()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\GalleriesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GalleriesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Koleksi_foto\\public\\index.php')
+DEBUG - 2025-02-26 23:20:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:20:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:20:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:20:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:21:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:21:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:21:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:22:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:22:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:23:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:23:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:23:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:23:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:24:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:24:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:25:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:26:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:26:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:27:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:27:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:29:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:29:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:29:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:29:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 23:30:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
