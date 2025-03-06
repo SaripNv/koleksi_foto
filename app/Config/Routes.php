@@ -20,7 +20,7 @@ $routes->group('admin', function ($routes) {
     $routes->post('categories/store', 'CategoriesController::store');
     $routes->get('categories/edit/(:num)', 'CategoriesController::edit/$1');
     $routes->post('categories/update/(:num)', 'CategoriesController::update/$1');
-    $routes->get('categories/delete/(:num)', 'CategoriesController::delete/$1');
+    $routes->post('categories/delete/(:num)', 'CategoriesController::delete/$1');
 
     // Routes untuk galeri
     $routes->get('galleries', 'GalleriesController::index');
@@ -28,7 +28,8 @@ $routes->group('admin', function ($routes) {
     $routes->post('galleries/store', 'GalleriesController::store');
     $routes->get('galleries/edit/(:num)', 'GalleriesController::edit/$1');
     $routes->post('galleries/update/(:num)', 'GalleriesController::update/$1');
-    $routes->get('galleries/delete/(:num)', 'GalleriesController::delete/$1');
+    $routes->post('galleries/delete/(:num)', 'GalleriesController::delete/$1');
+
 
     // Filter galeri berdasarkan kategori & tanggal
     $routes->get('galleries/filter/category/(:num)', 'GalleriesController::filterByCategory/$1');

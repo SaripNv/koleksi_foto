@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <link rel="shortcut icon" href="<?=base_url('/assets/gallery/LOGO-1.png')?>" type="image/x-icon">
-    <title><?=$this->renderSection('title')?> &mdash; GALLERY PERUM BULOG</title>
+    <title><?=$this->renderSection('title')?> &mdash; FOTO PERUM BULOG</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="<?=base_url('assets/vendor/bootstrap/package/dist/css/bootstrap.min.css')?>">
@@ -44,7 +44,7 @@
             <footer class="main-footer">
                 <div class="footer-left">
                     Copyright &copy; 2025
-                    <div class="bullet"></div>FERUM BULOG by Sarip Sistem Informasi</a>
+                    <div class="bullet"></div><a>PERUM BULOG</a>
                 </div>
             </footer>
             <!-- Akhir Footer -->
