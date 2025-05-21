@@ -18,12 +18,12 @@ class CategoriesController extends Controller
     public function index()
     {
         $data['categories'] = $this->categoryModel->findAll();
-        return view('admin/categories/index', $data);
+        return view('dashboard/categories/index', $data);
     }
 
     public function create()
 {
-    return view('admin/categories/create');
+    return view('dashboard/categories/create');
 }
 
     // Menyimpan kategori baru dengan validasi
@@ -37,7 +37,7 @@ class CategoriesController extends Controller
             'nama_kategori' => $this->request->getPost('nama_kategori')
         ]);
 
-        return redirect()->to('/admin/categories')->with('success', 'Kategori berhasil ditambahkan');
+        return redirect()->to('/dashboard/categories')->with('success', 'Kategori berhasil ditambahkan');
     }
 
     // Form edit kategori
@@ -45,9 +45,9 @@ class CategoriesController extends Controller
     {
         $data['category'] = $this->categoryModel->find($id);
         if (!$data['category']) {
-            return redirect()->to('/admin/categories')->with('error', 'Kategori tidak ditemukan');
+            return redirect()->to('/dashboard/categories')->with('error', 'Kategori tidak ditemukan');
         }
-        return view('admin/categories/edit', $data);
+        return view('dashboard/categories/edit', $data);
     }
 
     // Update kategori dengan validasi
@@ -61,17 +61,17 @@ class CategoriesController extends Controller
             'nama_kategori' => $this->request->getPost('nama_kategori')
         ]);
 
-        return redirect()->to('/admin/categories')->with('success', 'Kategori berhasil diperbarui');
+        return redirect()->to('/dashboard/categories')->with('success', 'Kategori berhasil diperbarui');
     }
 
     // Hapus kategori
     public function delete($id)
     {
         if (!$this->categoryModel->find($id)) {
-            return redirect()->to('/admin/categories')->with('error', 'Kategori tidak ditemukan');
+            return redirect()->to('/dashboard/categories')->with('error', 'Kategori tidak ditemukan');
         }
 
         $this->categoryModel->delete($id);
-        return redirect()->to('/admin/categories')->with('success', 'Kategori berhasil dihapus');
+        return redirect()->to('/dashboard/categories')->with('success', 'Kategori berhasil dihapus');
     }
 }

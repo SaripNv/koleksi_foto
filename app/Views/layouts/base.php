@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <link rel="shortcut icon" href="<?=base_url('/assets/gallery/LOGO-1.png')?>" type="image/x-icon">
     <title><?=$this->renderSection('title')?> &mdash; FOTO PERUM BULOG</title>
 
     <!-- General CSS Files -->
@@ -52,6 +51,7 @@
     </div>
 
     <!-- General JS Scripts -->
+
     <script src="<?=base_url('assets/vendor/jquery/package/dist/jquery.min.js')?>"></script>
     <script src="<?=base_url('assets/vendor/popperjs/package/dist/umd/popper.min.js')?>"></script>
     <script src="<?=base_url('assets/vendor/bootstrap/package/dist/js/bootstrap.bundle.min.js')?>"></script>
