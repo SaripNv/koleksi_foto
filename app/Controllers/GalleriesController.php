@@ -18,51 +18,59 @@ class GalleriesController extends Controller
     }
 
     // Menampilkan daftar galeri
-    public function index()
-    {
-        // Ambil parameter filter & sort
-        $sort           = $this->request->getGet('sort') ?? 'desc';
-        $filterKategori = $this->request->getGet('filter_kategori');   // new
-        $filterTanggal  = $this->request->getGet('filter_tanggal');    // new
-    
-        // Pagination
-        $page    = (int) ($this->request->getGet('page') ?? 1);
-        $perPage = 5;
-        $offset  = ($page - 1) * $perPage;
-    
-        // Bangun query dasar
-        $galleryQuery = $this->galleryModel
-            ->select('galleries.*, categories.nama_kategori')
-            ->join('categories', 'categories.id = galleries.kategori_id', 'left')
-            ->orderBy('galleries.tanggal_diambil', $sort);
-    
-        // Terapkan filter kategori jika ada
-        if ($filterKategori) {
-            $galleryQuery->where('galleries.kategori_id', $filterKategori);
-        }
-    
-        // Terapkan filter tanggal jika ada
-        if ($filterTanggal) {
-            $galleryQuery->where('galleries.tanggal_diambil', $filterTanggal);
-        }
-    
-        // Hitung total & ambil data
-        $total = $galleryQuery->countAllResults(false);
-        $galleries = $galleryQuery->findAll($perPage, $offset);
-    
-        // Kirim ke view
-        return view('dashboard/galleries/index', [
-            'galleries'       => $galleries,
-            'categories'      => $this->categoryModel->findAll(), // untuk dropdown filter
-            'sort'            => $sort,
-            'filterKategori'  => $filterKategori,
-            'filterTanggal'   => $filterTanggal,
-            'currentPage'     => $page,
-            'totalPages'      => (int) ceil($total / $perPage),
-            'perPage'         => $perPage,
-            'total'           => $total,
-        ]);
+   // Menampilkan daftar galeri
+public function index()
+{
+    // Ambil parameter filter & sort
+    $sort           = $this->request->getGet('sort') ?? 'desc';
+    $filterKategori = $this->request->getGet('filter_kategori');   // Filter kategori
+    $filterTanggal  = $this->request->getGet('filter_tanggal');    // Filter tanggal
+    $searchTerm     = $this->request->getGet('search');            // Filter pencarian nama foto
+
+    // Pagination
+    $page    = (int) ($this->request->getGet('page') ?? 1);
+    $perPage = 5;
+    $offset  = ($page - 1) * $perPage;
+
+    // Bangun query dasar
+    $galleryQuery = $this->galleryModel
+        ->select('galleries.*, categories.nama_kategori')
+        ->join('categories', 'categories.id = galleries.kategori_id', 'left')
+        ->orderBy('galleries.tanggal_diambil', $sort);
+
+    // Terapkan filter kategori jika ada
+    if ($filterKategori) {
+        $galleryQuery->where('galleries.kategori_id', $filterKategori);
     }
+
+    // Terapkan filter tanggal jika ada
+    if ($filterTanggal) {
+        $galleryQuery->where('galleries.tanggal_diambil', $filterTanggal);
+    }
+
+    // Terapkan pencarian berdasarkan nama foto jika ada
+    if ($searchTerm) {
+        $galleryQuery->like('galleries.nama_foto', $searchTerm);
+    }
+
+    // Hitung total & ambil data
+    $total = $galleryQuery->countAllResults(false);
+    $galleries = $galleryQuery->findAll($perPage, $offset);
+
+    // Kirim ke view
+    return view('dashboard/galleries/index', [
+        'galleries'       => $galleries,
+        'categories'      => $this->categoryModel->findAll(), // untuk dropdown filter
+        'sort'            => $sort,
+        'filterKategori'  => $filterKategori,
+        'filterTanggal'   => $filterTanggal,
+        'searchTerm'      => $searchTerm, // Kirim nilai pencarian ke view
+        'currentPage'     => $page,
+        'totalPages'      => (int) ceil($total / $perPage),
+        'perPage'         => $perPage,
+        'total'           => $total,
+    ]);
+}
     
     
 
@@ -73,17 +81,21 @@ class GalleriesController extends Controller
         return view('dashboard/galleries/create', $data);
     }
 
-    public function store()
+ public function store()
 {
     $rules = [
         'nama_foto'       => 'required',
         'deskripsi'       => 'required',
         'tanggal_diambil' => 'required|valid_date[Y-m-d]',
         'kategori_id'     => 'required|integer',
-        'foto'            => 'uploaded[foto.0]', // Minimal 1 file
+        'foto'            => 'uploaded[foto.0]|max_count[foto,10]', // Maksimal 10 file
         'foto.*'          => 'permit_empty|is_image[foto.*]|max_size[foto.*,5120]',
     ];
-
+    
+$this->validator = \Config\Services::validation();
+if ($this->request->getFileMultiple('foto')) { // Hanya jalankan jika ada file
+    $this->validator->setRule('foto', 'Jumlah foto maksimal 10', 'max_count[foto,10]');
+}
     if (!$this->validate($rules)) {
         return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
@@ -103,17 +115,17 @@ class GalleriesController extends Controller
     $filePaths = [];
     $count = 0;
 
-    // Ambil semua file dari input dengan index
-    for ($i = 0; $i < 4; $i++) {
-        $file = $this->request->getFile("foto.{$i}");
-        if ($file && $file->isValid() && !$file->hasMoved()) {
-            $name = $file->getRandomName();
-            $file->move($folder, $name);
-            $filePaths[] = $folder . '/' . $name;
-            $count++;
-            if ($count >= 4) break;
-        }
+    // Proses upload foto, maksimal 10 foto
+    for ($i = 0; $i < 10; $i++) {
+    $file = $this->request->getFile("foto.{$i}");
+    if ($file && $file->isValid() && !$file->hasMoved()) {
+        $name = $file->getRandomName();
+        $file->move($folder, $name);
+        $filePaths[] = $folder . '/' . $name;
+        $count++;
+        if ($count >= 10) break;
     }
+}
 
     if (empty($filePaths)) {
         return redirect()->back()->withInput()->with('error', 'Minimal unggah satu foto.');
@@ -183,7 +195,7 @@ public function update($id)
     $newPhotos = $existingPhotos;
 
     // Update per slot
-    for ($i = 0; $i < 4; $i++) {
+    for ($i = 0; $i < 10; $i++) {
         $file = $this->request->getFile("foto.{$i}");
         if ($file && $file->isValid() && !$file->hasMoved()) {
             $newName = $file->getRandomName();
@@ -200,7 +212,7 @@ public function update($id)
     }
 
     // Potong array maksimal 4 foto
-    $newPhotos = array_slice($newPhotos, 0, 4);
+    $newPhotos = array_slice($newPhotos, 0, 10);
 
     $this->galleryModel->update($id, [
         'nama_foto'       => $this->request->getPost('nama_foto'),

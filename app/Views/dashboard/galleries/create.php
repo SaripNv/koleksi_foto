@@ -86,9 +86,9 @@
 
                 <!-- Empat slot gambar -->
                 <div class="form-group">
-                    <label>Upload Photos (1–4)</label>
-                    <div class="d-flex">
-                        <?php for($i=0; $i<4; $i++): ?>
+                    <label>Upload Photos (1–10)</label>
+                    <div class="d-flex flex-wrap">
+                        <?php for($i=0; $i<10; $i++): ?>
                         <div class="image-slot" data-index="<?= $i ?>">
                             <div class="placeholder">Click to select<br>photo <?= $i+1 ?></div>
                             <input type="file" name="foto[]" accept="image/*" data-index="<?= $i ?>">
@@ -97,7 +97,7 @@
                     </div>
                     <small class="form-text text-muted">
                         Klik pada kotak untuk pilih file.<br>
-                        Anda bisa upload 1–4 gambar (max 5MB setiap).
+                        Anda bisa upload 1–10 gambar (max 2MB setiap).
                     </small>
                 </div>
 

@@ -95,13 +95,13 @@
                 <!-- Current Photos (preview existing images) -->
                 <div class="form-group">
                     <label>Current Photos</label><br>
-                    <div class="d-flex">
+                    <div class="d-flex flex-wrap">
                         <?php 
                             // Split the photos into an array using comma as the delimiter
                             $existingPhotos = explode(',', $gallery['foto']);
-                            $maxImages = 4; // Set a limit for images displayed
+                            $maxImages = 10; // Set a limit for images displayed
                         ?>
-                        <?php for ($i = 0; $i < 4; $i++): ?>
+                        <?php for ($i = 0; $i < 10; $i++): ?>
                         <div class="image-slot" data-index="<?= $i ?>"
                             style="background-image: url('<?= base_url($existingPhotos[$i] ?? '') ?>')">
                             <div class="placeholder" <?= isset($existingPhotos[$i]) ? 'style="display:none"' : '' ?>>

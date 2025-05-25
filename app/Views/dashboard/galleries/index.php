@@ -1,9 +1,7 @@
 <?= $this->extend('layouts/base') ?>
 <?= $this->section('title') ?>Data Gallery<?= $this->endSection() ?>
-
 <?= $this->section('content') ?>
 <?= helper('form') ?>
-
 <div class="section-header">
     <h1>Data Gallery</h1>
 </div>
@@ -16,9 +14,15 @@
             </a>
         </div>
         <div class="card-body">
-
-            <!-- FILTER: Kategori | Tanggal | Sort -->
+            <!-- FILTER: Search | Category | Date | Sort -->
             <form method="get" class="form-row align-items-end mb-4">
+                <!-- Search by Name -->
+                <div class="form-group col-6 col-md-3">
+                    <label for="search" class="small mb-1">Search by Name</label>
+                    <input type="text" name="search" id="search" class="form-control form-control-sm"
+                        value="<?= esc($searchTerm) ?>" onchange="this.form.submit()">
+                </div>
+
                 <!-- Category -->
                 <div class="form-group col-6 col-md-3">
                     <label for="filter_kategori" class="small mb-1">Category</label>
@@ -51,9 +55,9 @@
                 </div>
 
                 <!-- Reset Filter -->
-                <div class="form-group col-6 col-md-2">
+                <div class="form-group col-6 col-md-1">
                     <a href="<?= base_url('dashboard/galleries') ?>" class="btn btn-sm btn-secondary btn-block">
-                        Reset Filter
+                        Reset
                     </a>
                 </div>
             </form>
@@ -90,20 +94,19 @@
                             <td>
                                 <?php 
                                 $photos = explode(',', $photo['foto']);
-                                foreach (array_slice($photos, 0, 4) as $img): 
+                                foreach (array_slice($photos, 0, 2) as $img): 
                                 ?>
                                 <img src="<?= base_url($img) ?>" class="img-thumbnail mr-1 mb-1"
                                     style="width:60px;height:60px;object-fit:cover;" loading="lazy">
                                 <?php endforeach ?>
-                                <?php if (count($photos) > 4): ?>
-                                <span class="badge badge-info">+<?= count($photos) - 4 ?> more</span>
+                                <?php if (count($photos) > 2): ?>
+                                <span class="badge badge-info">+<?= count($photos) - 2 ?> more</span>
                                 <?php endif ?>
                             </td>
                             <td><?= date('d M Y', strtotime($photo['tanggal_diambil'])) ?></td>
                             <td>
                                 <a href="<?= base_url("dashboard/galleries/edit/{$photo['id']}") ?>"
                                     class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                                <!-- Di view dashboard/galleries/index.php -->
                                 <form action="<?= base_url("dashboard/galleries/delete/{$photo['id']}") ?>"
                                     method="POST" class="d-inline">
                                     <?= csrf_field() ?>
@@ -129,11 +132,12 @@
             <nav>
                 <ul class="pagination justify-content-center">
                     <?php
-                    $queryParams = [
-                        'sort' => $sort,
-                        'filter_kategori' => $filterKategori,
-                        'filter_tanggal' => $filterTanggal
-                    ];
+                    $queryParams = [];
+                    if ($sort) $queryParams['sort'] = $sort;
+                    if ($filterKategori) $queryParams['filter_kategori'] = $filterKategori;
+                    if ($filterTanggal) $queryParams['filter_tanggal'] = $filterTanggal;
+                    if (!empty($searchTerm)) $queryParams['search'] = $searchTerm;
+
                     $baseUrl = base_url('dashboard/galleries') . '?' . http_build_query($queryParams);
                     ?>
                     <?php if ($currentPage > 1): ?>
@@ -154,7 +158,6 @@
                 </ul>
             </nav>
             <?php endif ?>
-
         </div>
     </div>
 </div>
