@@ -141,4 +141,7 @@ public function uploadPhoto()
 
         return redirect()->to('dashboard/profile')->with('success', 'Password changed successfully');
     }
+    
+  
+
 }

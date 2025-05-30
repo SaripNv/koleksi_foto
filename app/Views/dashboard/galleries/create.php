@@ -5,17 +5,31 @@
 <?= helper('form') ?>
 
 <style>
+.image-slot-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
 .image-slot {
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    aspect-ratio: 1/1;
     background-color: #f8f9fa;
     border: 2px dashed #ccc;
-    border-radius: 4px;
+    border-radius: 8px;
     background-size: cover;
     background-position: center;
     cursor: pointer;
     position: relative;
-    margin-right: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.image-slot:hover {
+    border-color: #4e73df;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .image-slot input[type=file] {
@@ -31,6 +45,40 @@
     font-size: 0.9rem;
     text-align: center;
 }
+
+.remove-photo {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 0, 0, 0.7);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.image-slot:hover .remove-photo {
+    opacity: 1;
+}
+
+.photo-counter {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+}
 </style>
 
 <div class="section-header">
@@ -39,15 +87,21 @@
 <div class="section-body">
     <div class="card shadow">
         <div class="card-body">
-            <?php if (session('errors')): ?>
+            <?php if (session()->getFlashdata('error')): ?>
+            <div class="alert alert-danger">
+                <?= session()->getFlashdata('error') ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if (isset($errors)): ?>
             <div class="alert alert-danger">
                 <ul class="mb-0">
-                    <?php foreach (session('errors') as $e): ?>
-                    <li><?= esc($e) ?></li>
+                    <?php foreach ($errors as $error): ?>
+                    <li><?= esc($error) ?></li>
                     <?php endforeach ?>
                 </ul>
             </div>
-            <?php endif ?>
+            <?php endif; ?>
 
             <form action="<?= base_url('dashboard/galleries/store') ?>" method="POST" enctype="multipart/form-data">
                 <?= csrf_field() ?>
@@ -84,20 +138,21 @@
                     </select>
                 </div>
 
-                <!-- Empat slot gambar -->
+                <!-- 10 slot gambar dengan grid layout -->
                 <div class="form-group">
-                    <label>Upload Photos (1–10)</label>
-                    <div class="d-flex flex-wrap">
+                    <label>Upload Photos (1-10)</label>
+                    <div class="image-slot-container">
                         <?php for($i=0; $i<10; $i++): ?>
                         <div class="image-slot" data-index="<?= $i ?>">
                             <div class="placeholder">Click to select<br>photo <?= $i+1 ?></div>
-                            <input type="file" name="foto[]" accept="image/*" data-index="<?= $i ?>">
+                            <input type="file" name="foto[<?= $i ?>]" accept="image/*" data-index="<?= $i ?>">
+                            <div class="photo-counter"><?= $i+1 ?></div>
                         </div>
                         <?php endfor ?>
                     </div>
                     <small class="form-text text-muted">
                         Klik pada kotak untuk pilih file.<br>
-                        Anda bisa upload 1–10 gambar (max 2MB setiap).
+                        Anda bisa upload 1-10 gambar (max 2MB setiap).
                     </small>
                 </div>
 
@@ -113,24 +168,65 @@
 </div>
 
 <script>
-// Ketika slot diklik, trigger file input di dalamnya
 document.querySelectorAll('.image-slot').forEach(slot => {
-    slot.addEventListener('click', () => {
-        slot.querySelector('input[type=file]').click();
-    });
-    // Preview setelah file dipilih
-    slot.querySelector('input[type=file]').addEventListener('change', e => {
+    const input = slot.querySelector('input[type="file"]');
+    const counter = slot.querySelector('.photo-counter');
+
+    slot.addEventListener('click', () => input.click());
+
+    input.addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (!file) return;
-        if (!file.type.startsWith('image/')) return;
+
+        if (file.size > 2 * 1024 * 1024) {
+            alert('File size exceeds 2MB limit');
+            this.value = '';
+            return;
+        }
+
+        if (!file.type.startsWith('image/')) {
+            alert('Please select an image file');
+            this.value = '';
+            return;
+        }
 
         const reader = new FileReader();
         reader.onload = function(evt) {
             slot.style.backgroundImage = `url('${evt.target.result}')`;
             slot.querySelector('.placeholder').style.display = 'none';
+
+            if (!slot.querySelector('.remove-photo')) {
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'remove-photo';
+                removeBtn.innerHTML = '×';
+                removeBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    slot.style.backgroundImage = '';
+                    slot.querySelector('.placeholder').style.display = '';
+                    input.value = '';
+                    this.remove();
+                });
+                slot.appendChild(removeBtn);
+            }
         };
         reader.readAsDataURL(file);
     });
+});
+
+document.querySelector('form').addEventListener('submit', function(e) {
+    const fileInputs = document.querySelectorAll('input[type="file"]');
+    let hasFile = false;
+
+    fileInputs.forEach(input => {
+        if (input.files.length > 0) {
+            hasFile = true;
+        }
+    });
+
+    if (!hasFile) {
+        e.preventDefault();
+        alert('Minimal unggah satu foto');
+    }
 });
 </script>
 <?= $this->endSection() ?>

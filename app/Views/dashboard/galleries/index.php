@@ -2,6 +2,7 @@
 <?= $this->section('title') ?>Data Gallery<?= $this->endSection() ?>
 <?= $this->section('content') ?>
 <?= helper('form') ?>
+
 <div class="section-header">
     <h1>Data Gallery</h1>
 </div>
@@ -93,15 +94,36 @@
                             <td><?= esc($photo['nama_kategori'] ?? '—') ?></td>
                             <td>
                                 <?php 
-                                $photos = explode(',', $photo['foto']);
-                                foreach (array_slice($photos, 0, 2) as $img): 
-                                ?>
-                                <img src="<?= base_url($img) ?>" class="img-thumbnail mr-1 mb-1"
-                                    style="width:60px;height:60px;object-fit:cover;" loading="lazy">
-                                <?php endforeach ?>
-                                <?php if (count($photos) > 2): ?>
-                                <span class="badge badge-info">+<?= count($photos) - 2 ?> more</span>
-                                <?php endif ?>
+        $photos = explode(',', $photo['foto']);
+        $totalPhotos = count(array_filter($photos, function($img) {
+            return !empty(trim($img));
+        }));
+        
+        if ($totalPhotos > 0) {
+            // Tampilkan 2 gambar pertama
+            $displayed = 0;
+            foreach ($photos as $idx => $img) {
+                if (!empty(trim($img)) && $displayed < 2) {
+                    echo '<img src="'.base_url(trim($img)).'" class="img-thumbnail mr-1 mb-1" 
+                          style="width:50px;height:50px;object-fit:cover;" loading="lazy"
+                          title="Photo '.($idx+1).'">';
+                    $displayed++;
+                }
+            }
+            
+            // Tampilkan teks +n untuk sisa foto
+            if ($totalPhotos > 2) {
+                $remaining = $totalPhotos - 2;
+                echo '<span class="badge badge-primary align-middle ml-1" 
+                      style="font-size:0.8rem; cursor:pointer;" 
+                      title="'.implode("\n", array_slice($photos, 2)).'">
+                      +'.$remaining.'
+                      </span>';
+            }
+        } else {
+            echo '-';
+        }
+    ?>
                             </td>
                             <td><?= date('d M Y', strtotime($photo['tanggal_diambil'])) ?></td>
                             <td>

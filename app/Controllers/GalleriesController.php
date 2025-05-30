@@ -81,21 +81,30 @@ public function index()
         return view('dashboard/galleries/create', $data);
     }
 
- public function store()
+     // Form edit foto
+    public function edit($id)
+    {
+        $data['gallery'] = $this->galleryModel->find($id);
+        if (!$data['gallery']) {
+            return redirect()->to('/dashboard/galleries')->with('error', 'Foto tidak ditemukan');
+        }
+
+        $data['categories'] = $this->categoryModel->findAll();
+        return view('dashboard/galleries/edit', $data);
+    }
+    
+    
+   public function store()
 {
     $rules = [
         'nama_foto'       => 'required',
         'deskripsi'       => 'required',
         'tanggal_diambil' => 'required|valid_date[Y-m-d]',
         'kategori_id'     => 'required|integer',
-        'foto'            => 'uploaded[foto.0]|max_count[foto,10]', // Maksimal 10 file
-        'foto.*'          => 'permit_empty|is_image[foto.*]|max_size[foto.*,5120]',
+        'foto'            => 'uploaded[foto.0]', // Minimal 1 file
+        'foto.*'          => 'permit_empty|is_image[foto.*]|max_size[foto.*,2048]',
     ];
-    
-$this->validator = \Config\Services::validation();
-if ($this->request->getFileMultiple('foto')) { // Hanya jalankan jika ada file
-    $this->validator->setRule('foto', 'Jumlah foto maksimal 10', 'max_count[foto,10]');
-}
+
     if (!$this->validate($rules)) {
         return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
@@ -115,17 +124,16 @@ if ($this->request->getFileMultiple('foto')) { // Hanya jalankan jika ada file
     $filePaths = [];
     $count = 0;
 
-    // Proses upload foto, maksimal 10 foto
+    // Ambil semua file dari input dengan index
     for ($i = 0; $i < 10; $i++) {
-    $file = $this->request->getFile("foto.{$i}");
-    if ($file && $file->isValid() && !$file->hasMoved()) {
-        $name = $file->getRandomName();
-        $file->move($folder, $name);
-        $filePaths[] = $folder . '/' . $name;
-        $count++;
-        if ($count >= 10) break;
+        $file = $this->request->getFile("foto.{$i}");
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            $name = $file->getRandomName();
+            $file->move($folder, $name);
+            $filePaths[] = $folder . '/' . $name;
+            $count++;
+        }
     }
-}
 
     if (empty($filePaths)) {
         return redirect()->back()->withInput()->with('error', 'Minimal unggah satu foto.');
@@ -142,24 +150,9 @@ if ($this->request->getFileMultiple('foto')) { // Hanya jalankan jika ada file
 
     return redirect()->to('/dashboard/galleries')->with('success', "{$count} foto berhasil ditambahkan");
 }
-    
-    
-    
-
-    // Form edit foto
-    public function edit($id)
-    {
-        $data['gallery'] = $this->galleryModel->find($id);
-        if (!$data['gallery']) {
-            return redirect()->to('/dashboard/galleries')->with('error', 'Foto tidak ditemukan');
-        }
-
-        $data['categories'] = $this->categoryModel->findAll();
-        return view('dashboard/galleries/edit', $data);
-    }
 
     // Update data foto dengan validasi
- // Update data foto dengan validasi
+
 public function update($id)
 {
     $gallery = $this->galleryModel->find($id);
@@ -172,7 +165,7 @@ public function update($id)
         'deskripsi'       => 'required',
         'tanggal_diambil' => 'required|valid_date[Y-m-d]',
         'kategori_id'     => 'required|integer',
-        'foto.*'          => 'permit_empty|is_image[foto.*]|max_size[foto.*,5120]',
+        'foto.*'          => 'permit_empty|is_image[foto.*]|max_size[foto.*,2048]',
     ];
 
     if (!$this->validate($rules)) {
@@ -192,27 +185,38 @@ public function update($id)
     }
 
     $existingPhotos = explode(',', $gallery['foto']);
-    $newPhotos = $existingPhotos;
+    $newPhotos = [];
+    $deletedPhotos = $this->request->getPost('deleted_foto') ?? [];
 
-    // Update per slot
+    // Handle existing photos
+    foreach ($existingPhotos as $index => $photoPath) {
+        if (!in_array($photoPath, $deletedPhotos)) {
+            $newPhotos[$index] = $photoPath;
+        } else {
+            // Delete the file from server
+            if (file_exists($photoPath)) {
+                unlink($photoPath);
+            }
+        }
+    }
+
+    // Handle new uploads
     for ($i = 0; $i < 10; $i++) {
         $file = $this->request->getFile("foto.{$i}");
         if ($file && $file->isValid() && !$file->hasMoved()) {
             $newName = $file->getRandomName();
             $file->move($folderPath, $newName);
             $filePath = $folderPath . '/' . $newName;
-
-            // Hapus foto lama jika ada
-            if (isset($existingPhotos[$i]) && file_exists($existingPhotos[$i])) {
-                unlink($existingPhotos[$i]);
-            }
-
             $newPhotos[$i] = $filePath;
         }
     }
 
-    // Potong array maksimal 4 foto
-    $newPhotos = array_slice($newPhotos, 0, 10);
+    // Remove empty slots and reindex array
+    $newPhotos = array_values(array_filter($newPhotos));
+
+    if (empty($newPhotos)) {
+        return redirect()->back()->withInput()->with('error', 'Setidaknya harus ada satu foto');
+    }
 
     $this->galleryModel->update($id, [
         'nama_foto'       => $this->request->getPost('nama_foto'),
